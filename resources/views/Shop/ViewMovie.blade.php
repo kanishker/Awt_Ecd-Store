@@ -21,7 +21,7 @@
                         6.0 stars
                         <br>
                         <br>
-                        <a href="#" class="btn btn-success">Buy Movie</a>
+                        <a href="{{Route('movie.add-to-cart',['id'=>$movie->id])}}" class="btn btn-success">Buy Movie</a>
                     </div>
                 </div>
                 <!-- /.card -->

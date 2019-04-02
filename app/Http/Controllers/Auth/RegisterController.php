@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/movie';
 
     /**
      * Create a new controller instance.
@@ -73,6 +73,6 @@ class RegisterController extends Controller
     Public function Logout()
     {
         Auth::logout();
-        //return $this->redirectPath('/login');
+        return $this->redirectPath('/movie');
     }
 }

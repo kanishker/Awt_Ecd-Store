@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Session;
 
 $user = Auth::user();
 ?>
@@ -19,20 +19,20 @@ $user = Auth::user();
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-shopping-cart"></i> Cart &nbsp;
+                    <span class="badge badge-light">
+                        {{Illuminate\Support\Facades\Session::has('cart') ? Illuminate\Support\Facades\Session::get('cart')->totalQty:''}}</span>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
-                </li>
                 <!--<li class="nav-item">
                     <a class="nav-link" href="#"> <i class="fas fa-user-circle"></i> User</a>
                 </li>-->
+
+
                 <div class="dropdown show">
                     @if(Auth::check())
                     <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,11 +44,16 @@ $user = Auth::user();
                             <a class="dropdown-item" href="#"></a>
                             <a class="dropdown-item" href="{{'/logout'}}">Logout</a>
                             <a class="dropdown-item" href="#">Something else here</a>
+                             <form method="post" action="{{'/logout'}}">
+                            @csrf
+                            <a class="dropdown-item" href="#"></a><input type="submit"></form>
+                    </div>
 
                             @else
                             <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-user-circle"></i>  {{$user->name}}
+                                <i class="fas fa-user-circle"></i>  User
                             </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="{{'/login'}}">Login</a>
                         <a class="dropdown-item" href="{{'/register'}}">Register</a>
                         @endif

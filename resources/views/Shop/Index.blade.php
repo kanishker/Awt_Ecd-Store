@@ -15,6 +15,7 @@
                 <h5>{{$movie->price}}.Rs</h5>
                 <p class="card-text">{{$movie->desc}}</p>
             </div>
+            <a href="{{Route('movie.add-to-cart',['id'=>$movie->id])}}" class="btn btn-success">Buy Movie</a>
             <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
             </div>
@@ -23,8 +24,6 @@
 
 
     @endforeach
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
+
 @endsection
 

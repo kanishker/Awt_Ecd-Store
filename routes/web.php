@@ -24,15 +24,22 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('auth.register');
 });
+Route::get('/add-to-cart/{id}',[
+    'uses'=>'Cart\CartController@AddToCart',
+    'as'=>'movie.add-to-cart'
+]);
 
 Route::post('/logout', 'Auth\RegisterController@Logout');
 
-Route::get('/movie', 'Movie\MovieController@index')->middleware('auth');
+Route::get('/movie', 'Movie\MovieController@index',[
+'as'=>'movie.index']);
+//->middleware('auth');
+
+Route::get('/movie/{id}', 'Movie\MovieController@show',[
+'as'=>'movie.show']);//->middleware('auth');
 
 //when the resource controller is active/present in the codes the above auth function will not work
-Route::resources([
-    'movie' => 'Movie\MovieController',
-]);
+
 
 Auth::routes();
 
