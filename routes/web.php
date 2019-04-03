@@ -28,6 +28,10 @@ Route::get('/add-to-cart/{id}',[
     'uses'=>'Cart\CartController@AddToCart',
     'as'=>'movie.add-to-cart'
 ]);
+Route::get('/viewcart',[
+    'uses'=>'Cart\CartController@getCart',
+    'as'=>'movie.viewCart'
+]);
 
 Route::post('/logout', 'Auth\RegisterController@Logout');
 

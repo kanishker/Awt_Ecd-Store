@@ -21,4 +21,15 @@ class CartController extends Controller
        // dd($request->session()->get('cart'));
         return redirect('/movie');
     }
+
+    public function getCart()
+    {
+        if(!Session::has('cart')){
+            Return view('shop.shopping-cart');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        Return view('shop.shopping-cart',['movies'=>$cart->movie,
+            'totalPrice'=>$cart->totalPrice]);
+    }
 }

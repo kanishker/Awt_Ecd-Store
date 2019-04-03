@@ -19,7 +19,7 @@ $user = Auth::user();
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{'/viewcart'}}">
                         <i class="fas fa-shopping-cart"></i> Cart &nbsp;
                     <span class="badge badge-light">
                         {{Illuminate\Support\Facades\Session::has('cart') ? Illuminate\Support\Facades\Session::get('cart')->totalQty:''}}</span>
