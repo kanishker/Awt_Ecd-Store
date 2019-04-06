@@ -18,7 +18,7 @@ class CartController extends Controller
         $cart->add($movie,$movie->id);
 
         $request->session()->put('cart',$cart);
-       // dd($request->session()->get('cart'));
+       //dd($request->session()->get('cart'));
         return redirect('/movie');
     }
 
@@ -29,7 +29,7 @@ class CartController extends Controller
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        Return view('shop.shopping-cart',['movies'=>$cart->movie,
-            'totalPrice'=>$cart->totalPrice]);
+        //dd($cart);
+        Return view('shop.shopping-cart',['movies'=>$cart]);
     }
 }
