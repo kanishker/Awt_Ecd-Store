@@ -22,14 +22,28 @@ class CartController extends Controller
         return redirect('/movie');
     }
 
-    public function getCart()
+    public function getCart(Request $request)
     {
         if(!Session::has('cart')){
             Return view('shop.shopping-cart');
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        //dd($cart);
-        Return view('shop.shopping-cart',['movies'=>$cart]);
+       // dd($request->session()->get('cart'));
+        $cart12 = json_decode(json_encode(($request->session()->get('cart'))));
+        //$cart12=$cart12->toArray();
+    //   dd($cart12->movie->{"1"});
+        Return view('shop.shopping-cart',['movies'=>$cart12,'total'=>$cart12->totalPrice]);
+    }
+    public function getCheckout(Request $request)
+    {
+        if(!Session::has('cart')){
+            Return view('shop.shopping-cart');
+        }
+        $cart12 = json_decode(json_encode(($request->session()->get('cart'))));
+        //$total = $cart12->movie->price;
+        return view('shop.checkout',['total'=>100]);
+
+
     }
 }

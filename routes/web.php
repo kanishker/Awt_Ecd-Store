@@ -33,6 +33,15 @@ Route::get('/viewcart',[
     'as'=>'movie.viewCart'
 ]);
 
+Route::get('/checkout',[
+    'uses'=>'Cart\CartController@getCheckout',
+    'as'=>'checkout'
+]);
+Route::post('/checkout',[
+    'uses'=>'Cart\CartController@postCheckout',
+    'as'=>'checkout'
+]);
+
 Route::post('/logout', 'Auth\RegisterController@Logout');
 
 Route::get('/movie', 'Movie\MovieController@index',[
