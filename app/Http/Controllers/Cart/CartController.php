@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Model\Movie;
 use App\Cart;
 use Illuminate\Support\Facades\Session;
+use Stripe\Stripe;
+use Stripe\Charge;
 
 class CartController extends Controller
 {
@@ -43,7 +45,30 @@ class CartController extends Controller
         $cart12 = json_decode(json_encode(($request->session()->get('cart'))));
         //$total = $cart12->movie->price;
         return view('shop.checkout',['total'=>100]);
-
-
     }
+    public function postCheckout(Request $request)
+    {
+        if(!Session::has('cart')){
+            Return view('shop.shopping-cart');
+        }
+        $cart12 = json_decode(json_encode(($request->session()->get('cart'))));
+        //$total = $cart12->movie->price;
+        Stripe::setApiKey('sk_test_X3T8953YPDQo1lWLUIQeZRVy00SloHWmGK');
+        try{
+            Charge::create([
+                "amount" => 100,
+                "currency" => "usd",
+                "source" => $request->input('stripeToken'), // obtained with Stripe.js
+                "description" => "Charge for jenny.rosen@example.com"
+            ]);
+        }
+        catch(\Exceptoin $e)
+        {
+            return redirect()->route('checkout')->with('error',$e->getMessege());
+        }
+
+        Session::forget('cart');
+        return redirect()->route('product.index')->with('sucess','Sucessfully purchachesd');
+    }
+
 }

@@ -3,7 +3,13 @@
 
 @section('movies')
     @include('ShopLayout.homecaro')
-
+    @if(Session::has('success'))
+<div class ="col-sm-6.col-md-4.col-md-offset-4.col-sm-offset-3">
+    <div id="charge-message" class="alert alert-success">
+        {{Session::get('sucess')}}
+</div>
+</div>
+@endif
     @foreach ($movies as $movie)
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">

@@ -7,6 +7,9 @@
  */
 ?>
 <h4>Total :{{$total}}</h4>>
+<div id="charge-error" class="alert alert-danger{{!Session::has('error') ? 'hidden':''}}" >
+    {{session::get('error')}}
+</div>
 <form action="{{route('checkout')}}" method="post" id="checkout-form">
     <label>Name</label>
     <input type="text" id="name" class="form-control" required>
@@ -28,3 +31,5 @@
     {{csrf_field()}}
     <button type="submit" class="btn btn-success">Checkout</button>
 </form>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript" src="js/CheckOut.js"></script>
