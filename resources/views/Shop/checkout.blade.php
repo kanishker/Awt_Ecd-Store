@@ -21,13 +21,16 @@
     <input type="text" id="cartholdername" class="form-control" required>
 
     <label>Credit card number</label>
-    <input type="text" id="ccnum" class="form-control" required><br>
+    <input type="text" id="card-number" class="form-control" required><br>
 
     <label>EXPIRATION month</label>
-    <input type="text" id="expmonth" class="form-control" required>
+    <input type="text" id="card-expiry-month" class="form-control" required>
 
     <label>EXPIRATION year</label>
-    <input type="text" id="expyear" class="form-control" required>
+    <input type="text" id="card-expiry-year" class="form-control" required>
+
+    <label>CVC</label>
+    <input type="text" id="card-cvc" class="form-control" required>
     {{csrf_field()}}
     <button type="submit" class="btn btn-success">Checkout</button>
 </form>

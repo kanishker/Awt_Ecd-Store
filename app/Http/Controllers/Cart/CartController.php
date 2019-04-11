@@ -59,7 +59,10 @@ class CartController extends Controller
                 "amount" => 100,
                 "currency" => "usd",
                 "source" => $request->input('stripeToken'), // obtained with Stripe.js
-                "description" => "Charge for jenny.rosen@example.com"
+                "description" => "Charge for jenny.rosen@example.com",
+                "source" => "tok_visa"
+
+
             ]);
         }
         catch(\Exceptoin $e)
@@ -68,7 +71,7 @@ class CartController extends Controller
         }
 
         Session::forget('cart');
-        return redirect()->route('product.index')->with('sucess','Sucessfully purchachesd');
+        return redirect()->route('movie.index')->with('sucess','Sucessfully purchachesd');
     }
 
 }
