@@ -71,7 +71,7 @@ class CartController extends Controller
         }
 
         Session::forget('cart');
-        return redirect()->route('movie.index')->with('sucess','Sucessfully purchachesd');
+        return redirect()->route('movie.index')->with('success','Successful purchased');
     }
 
 }

@@ -6,7 +6,7 @@
     @if(Session::has('success'))
 <div class ="col-sm-6.col-md-4.col-md-offset-4.col-sm-offset-3">
     <div id="charge-message" class="alert alert-success">
-        {{Session::get('sucess')}}
+        {{Session::get('success')}}
 </div>
 </div>
 @endif
