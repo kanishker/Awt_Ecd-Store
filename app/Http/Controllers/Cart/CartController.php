@@ -87,6 +87,7 @@ class CartController extends Controller
     public function ClearCart()
     {
         Session::forget('cart');
+        return redirect()->route('home')->with('empty','Your cart is empty, Add Products to the cart');
     }
 
 

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Shop Homepage - Start Bootstrap Template atatshgsvdghuasd </title>
+    <title>E-CD Store</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/app.css" rel="stylesheet">

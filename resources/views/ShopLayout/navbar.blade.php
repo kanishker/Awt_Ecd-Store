@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Session;
 $user = Auth::user();
 ?>
 <!-- Navigation -->
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
 
@@ -13,10 +12,24 @@ $user = Auth::user();
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="searchbar">
-            <input class="search_input" type="text" name="" placeholder="Search...">
-            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+           <!-- <input class="search_input" type="text" name="search" id="search" placeholder="Search Movie..">
+            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>-->
+            <form action="/search" method="POST" role="search">
+                {{ csrf_field() }}
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" id="q"
+                           placeholder="Search Movies"> <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">
+                <span class="fas fa-search"></span>
+            </button>
+        </span>
+                </div>
+            </form>
+
         </div>
+
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
@@ -48,11 +61,10 @@ $user = Auth::user();
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
                             <a class="dropdown-item" href="#"></a>
-                            <a class="dropdown-item" href="{{'/logout'}}">Logout</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="#"></a>
                              <form method="post" action="{{'/logout'}}">
                             @csrf
-                            <a class="dropdown-item" href="#"></a><input type="submit"></form>
+                            <a class="dropdown-item" href="#"></a><input type="submit" value="Logout"></form>
                     </div>
 
                             @else
@@ -72,3 +84,7 @@ $user = Auth::user();
         </div>
     </div>
 </nav>
+
+
+
+

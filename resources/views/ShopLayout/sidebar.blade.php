@@ -1,9 +1,13 @@
 
+<?php
 
-    <h1 class="my-4">E-CD store....;-></h1>
+$moveies = App\Model\Movie::all()
+
+?>
+<h1 class="my-4">E-CD store....;-></h1>
     <div class="list-group">
-        <a href="#" class="list-group-item">Category 1</a>
-        <a href="#" class="list-group-item">Category 2</a>
-        <a href="#" class="list-group-item">Category 3</a>
+        @foreach ($moveies as $moviessssss)
+        <a href="#" class="list-group-item">{{$moviessssss->genere}}</a>
+        @endforeach
     </div>
 

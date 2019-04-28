@@ -1,4 +1,5 @@
 <?php
+use App\Model\Movie;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,11 @@ Route::get('/home', 'Movie\MovieController@index')->name('home');
 Route::get('/home13', 'Movie\MovieController@index',[
     'as'=>'movie.home'
 ]);
+
+Route::get('/livesearch', 'SearchController@index',[
+    'as'=>'search'
+]);
+Route::get('/livesearch/{id}', 'SearchController@action');
+
+Route::Post ('/search', 'SearchController@search');
+
