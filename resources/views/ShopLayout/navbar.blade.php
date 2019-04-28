@@ -5,12 +5,19 @@ use Illuminate\Support\Facades\Session;
 $user = Auth::user();
 ?>
 <!-- Navigation -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
+
         <a class="navbar-brand" href="{{'/movie'}}">Lets Start Shopping </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="searchbar">
+            <input class="search_input" type="text" name="" placeholder="Search...">
+            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+        </div>
+
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
@@ -31,7 +38,6 @@ $user = Auth::user();
                 <!--<li class="nav-item">
                     <a class="nav-link" href="#"> <i class="fas fa-user-circle"></i> User</a>
                 </li>-->
-
 
                 <div class="dropdown show">
                     @if(Auth::check())

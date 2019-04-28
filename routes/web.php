@@ -32,14 +32,20 @@ Route::get('/viewcart',[
     'uses'=>'Cart\CartController@getCart',
     'as'=>'movie.viewCart'
 ]);
+Route::get('/resetcart',[
+    'uses'=>'Cart\CartController@ClearCart',
+    'as'=>'movie.Clearcart'
+]);
 
 Route::get('/checkout',[
     'uses'=>'Cart\CartController@getCheckout',
-    'as'=>'checkout'
+    'as'=>'checkout',
+    'middleware'=>'auth'
 ]);
 Route::post('/checkout',[
     'uses'=>'Cart\CartController@postCheckout',
-    'as'=>'checkout'
+    'as'=>'checkout',
+    'middleware'=>'auth'
 ]);
 
 Route::post('/logout', 'Auth\RegisterController@Logout');
@@ -57,7 +63,7 @@ Route::get('/movie/{id}', 'Movie\MovieController@show',[
 Auth::routes();
 
 Route::get('/home', 'Movie\MovieController@index')->name('home');
-Route::get('/home12', 'HomeController@index')->name('home');
+//Route::get('/home12', 'HomeController@index')->name('home');
 
 Route::get('/home13', 'Movie\MovieController@index',[
     'as'=>'movie.home'

@@ -12,10 +12,10 @@
 </div>
 <form action="{{route('checkout')}}" method="post" id="checkout-form">
     <label>Name</label>
-    <input type="text" id="name" class="form-control" required>
+    <input type="text" id="name" name="name" class="form-control" required>
 
     <label>Address</label>
-    <input type="text" id="add" class="form-control" required>
+    <input type="text" id="add" name="address" class="form-control" required>
 
     <label>cart holder name</label>
     <input type="text" id="cartholdername" class="form-control" required>

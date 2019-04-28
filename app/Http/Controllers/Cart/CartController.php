@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Movie;
+use App\Model\Order;
 use App\Cart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Stripe\Stripe;
 use Stripe\Charge;
@@ -55,7 +57,7 @@ class CartController extends Controller
         //$total = $cart12->movie->price;
         Stripe::setApiKey('sk_test_X3T8953YPDQo1lWLUIQeZRVy00SloHWmGK');
         try{
-            Charge::create([
+            $charge = Charge::create([
                 "amount" => 100,
                 "currency" => "usd",
                 "source" => $request->input('stripeToken'), // obtained with Stripe.js
@@ -64,6 +66,15 @@ class CartController extends Controller
 
 
             ]);
+            $order = new Order();
+            $order->cart = serialize($cart12);
+            $order->address = $request->input('address');
+            $order->name = $request->input('name');
+            $order->payment_id = $charge->id;
+
+            Auth::user()->orders()->save($order);
+
+
         }
         catch(\Exceptoin $e)
         {
@@ -71,7 +82,12 @@ class CartController extends Controller
         }
 
         Session::forget('cart');
-        return redirect()->route('movie.index')->with('success','Successful purchased');
+        return redirect()->route('home')->with('success','Successfully purchased');
     }
+    public function ClearCart()
+    {
+        Session::forget('cart');
+    }
+
 
 }

@@ -25,9 +25,10 @@ use Illuminate\Support\Facades\Session;
               <hr>
               <a href="{{route('checkout')}}" type="button" class="btn-success">Check  Out</a>
               </ul>
-
+              <a href="{{'/resetcart'}}" type="button" class="btn-success">Clear</a>
           @else
                 <strong>No Items</strong>
+                <a href="{{'/movie'}}">Back to Movies</a>
         @endif
 
 
