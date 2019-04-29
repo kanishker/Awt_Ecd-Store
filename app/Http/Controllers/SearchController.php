@@ -17,10 +17,22 @@ class SearchController extends Controller
     }
     function search(Request $request)
     {
-        $movs = Movie::where('name','like','%'.$request.'%')
-            ->orWhere('dir','like','%'.$request.'%')
+
+        $movs = Movie::where('name','like','%'.$request->q.'%')
+            ->orWhere('dir','like','%'.$request->q.'%')
             ->get();
+       //echo $movieName = $request->q;
        // dd($movs);
         Return view('shop.searchres',['movie'=>$movs]);
+    }
+    function searchbygen($gen)
+    {
+
+        $movs = Movie::where('genere',$gen)
+            ->get();
+        //echo $movieName = $request->q;
+        // dd($movs);
+        Return view('shop.searchres',['movie'=>$movs]);
+      // echo "Search gen".$gen;
     }
 }

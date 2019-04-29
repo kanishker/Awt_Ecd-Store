@@ -27,8 +27,10 @@
               </ul>
               <a href="{{'/resetcart'}}" type="button" class="btn-danger">Clear<i class="fas fa-trash-alt"></i></a>
           @else
-                <strong>No Items</strong>
+              <div class="col-md-7">
+              <h1><strong>No Items</strong></h1>
                 <a href="{{'/movie'}}">Back to Movies</a>
+              </div>
         @endif
 
 
