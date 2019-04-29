@@ -80,6 +80,6 @@ Route::Post ('/search', 'SearchController@search');
 Route::get ('/search/{gen}', 'SearchController@searchbygen');
 
 Route::get ('/admin',function(){
-    return view('Admin.test');
+    return view('Admin.index');
 });
 
