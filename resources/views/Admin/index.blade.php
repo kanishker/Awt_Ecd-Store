@@ -6,7 +6,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form role="form">
+                <form  method="post" id="addmovie-form" action="{{'/admin/addmovie'}}">
+
                     <div class="form-group">
 
                         <label for="exampleInputEmail1">
@@ -24,7 +25,7 @@
                         <label for="exampleInputEmail1">
                             Description
                         </label>
-                        <textarea type="text" class="form-control" id="gen" name="gen"></textarea>
+                        <textarea type="text" class="form-control" id="desc" name="desc"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -55,7 +56,14 @@ Language                        </label>
                         <label for="exampleInputFile">
                             Image 1
                         </label>
-                        <input type="file" class="form-control-file" id="img1" name="img1" />
+                        <input type="file" class="form-control-file" id="img1" name="img1" /><label for="exampleInputFile">
+                            Image 2
+                        </label>
+                        <input type="file" class="form-control-file" id="img2" name="img2" />
+                        <label for="exampleInputFile">
+                            Image 3
+                        </label>
+                        <input type="file" class="form-control-file" id="img3" name="img3" />
                         <p class="help-block">
                             Insert The first Image
                         </p>
@@ -63,6 +71,7 @@ Language                        </label>
                     <div class="checkbox">
 
                     </div>
+                    {{csrf_field()}}
                     <button type="submit" class="btn btn-primary">
                         Add Movie
                     </button>

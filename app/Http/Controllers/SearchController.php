@@ -35,4 +35,42 @@ class SearchController extends Controller
         Return view('shop.searchres',['movie'=>$movs]);
       // echo "Search gen".$gen;
     }
+    public function search2(Request $request)
+    {
+            if($request->ajax())
+            {
+                $query = $request->get('query');
+                if($query != '')
+                {
+                    $data = Movie::where('name','like','%'.$query.'%')
+                        ->orWhere('dir','like','%'.$query.'%')
+                        ->get();
+                }
+                else
+                {
+                    $data = Movie::all();
+                }
+                $total_row = $data->count();
+                if($total_row>0)
+                {
+                    foreach ($data as $row)
+                    {
+                        $output ='<tr> 
+                                    <td>'.$row->name.'</td> 
+                                    <td>'.$row->desc.'</td> 
+                                    <td>'.$row->dir.'</td> 
+                                    <td>'.$row->id.'</td> 
+                                     
+                                  </tr>';
+                    }
+                }
+                else{
+                    $output = 'No Data';
+                }
+                $data = array(
+                    'table_data' =>$output
+                );
+                echo json_encode($data);
+            }
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Movie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Movie;
+use Illuminate\Pagination\Paginator;
 use App\Http\Resources\Movie as MovieResource;
 
 class MovieController extends Controller
@@ -16,7 +17,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-       // $movie = Movie::paginate(15);
+      // $movie = Movie::simplePaginate(15);
         $movie = Movie::all();
 
         return view('Shop.index',['movies'=>$movie]);
@@ -27,9 +28,37 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        //echo $request;
+        $movie = new Movie;
+        $movie->name = $request->name;
+        $movie->genere = $request->gen;
+        $movie->desc = $request->desc;
+        $movie->price = $request->price;
+        $movie->language = $request->lang;
+        $movie->dir = $request->dir;
+        $movie->cast = $request->cast;
+        $movie->img1 = $request->img1;
+        $movie->img2 = $request->img2;
+        $movie->img3 = $request->img3;
+        $movie->save();
+
+        return redirect('/admin/viewmovies');
+
+        /*$table->String('name');
+        $table->String('genere');
+        $table->text('desc');
+        $table->integer('price');
+        $table->String('language');
+        $table->String('dir');
+        $table->String('cast');
+        $table->String('img1');
+        $table->String('img2');
+        $table->String('img3');
+        $table->timestamps();*/
+
+
     }
 
     /**
@@ -76,9 +105,27 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $movie = Movie::find($request->id);
+
+        $movie->name = 'New Flight Name';
+        $movie->name = $request->name;
+        $movie->genere = $request->gen;
+        $movie->desc = $request->desc;
+        $movie->price = $request->price;
+        $movie->language = $request->lang;
+        $movie->dir = $request->dir;
+        $movie->cast = $request->cast;
+        $res=$movie->save();
+        if($res==1) {
+            return redirect('/admin/viewmovieedit')->with('success','Successfully Updated');
+        }
+        else
+        {
+            return redirect('/admin/viewmovieedit')->with('error','Updates UnSuccessful');
+        }
+
     }
 
     /**
@@ -89,10 +136,34 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $movie = Movie::find($id);
+
+        $res = $movie->delete();
+        if($res==1) {
+            return redirect('/admin/viewmovieedit')->with('success','Successfully Deleted');
+        }
+        else
+        {
+            return redirect('/admin/viewmovieedit')->with('error','Deletes UnSuccessful');
+        }
+
     }
     public function _construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+    public function moviesadmin()
+    {
+        $movie = Movie::all();
+
+        return view('Admin.viewmovieedit',['movies'=>$movie]);
+    }
+    public function getForupdate($id)
+    {
+        $movie = Movie::findOrFail($id);
+
+        //return view('Shop.ViewMovie',['movies'=>Movie::findOrFail($mid)]);
+        // return new MovieResource($movie);
+        return view('Admin.movieup',['movies'=>$movie]);
     }
 }

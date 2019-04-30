@@ -73,7 +73,8 @@ Route::get('/home13', 'Movie\MovieController@index',[
 Route::get('/livesearch', 'SearchController@index',[
     'as'=>'search'
 ]);
-Route::get('/livesearch/{id}', 'SearchController@action');
+Route::get('/livesearch/action', 'SearchController@search2')
+    ->name('live_search.action');
 
 Route::Post ('/search', 'SearchController@search');
 
@@ -82,4 +83,23 @@ Route::get ('/search/{gen}', 'SearchController@searchbygen');
 Route::get ('/admin',function(){
     return view('Admin.index');
 });
+Route::get ('/admin/youtube',function(){
+    return view('Admin.youtube');
+});
+Route::get ('/admin/viewmovies',function(){
+    return view('Admin.viewmovies');
+});
+Route::Post ('/admin/addmovie','Movie\MovieController@create');
+
+Route::get ('/admin/viewmovieedit','Movie\MovieController@moviesadmin');
+
+Route::get ('/admin/update/{id}','Movie\MovieController@getForupdate');
+
+Route::PUT('/admin/updates','Movie\MovieController@update');
+
+Route::get ('/admin/Delete/{id}','Movie\MovieController@destroy');
+
+Route::get('/admin/orders','OrderController@index');
+
+
 

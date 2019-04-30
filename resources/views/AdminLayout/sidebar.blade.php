@@ -10,6 +10,12 @@
                     <a class="nav-link active" href="#">Add Movie</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{'/admin/viewmovies'}}">View Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'/admin/viewmovieedit'}}">Update/Edit Movies</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">View Orders</a>
                 </li>
                 <li class="nav-item">

@@ -33,7 +33,7 @@
     @foreach ($movies as $movie)
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
-            <a href="/movie/{{$movie->id}}"><img class="card-img-top" width="700" height="200" src="https://d1t80wr11ktjcz.cloudfront.net/wp-content/uploads/2018/07/01061016/7315945.jpg?d=900x474&q=70" alt=""></a>
+            <a href="/movie/{{$movie->id}}"><img class="card-img-top"  onmouseover="showNotification()" width="700" height="200" src="https://d1t80wr11ktjcz.cloudfront.net/wp-content/uploads/2018/07/01061016/7315945.jpg?d=900x474&q=70" alt=""></a>
             <div class="card-body">
                 <h4 class="card-title">
                     <a href="/movie/{{$movie->id}}">{{$movie->name}}</a>
@@ -48,8 +48,8 @@
         </div>
     </div>
 
-
     @endforeach
+
 
 @endsection
 
